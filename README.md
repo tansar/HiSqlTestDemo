@@ -14,6 +14,10 @@
 
 从测试结果来看 HiSql的性能测试名列前茅
 
+hisql源码下载
+```cmd
+git clone https://github.com/tansar/HiSql.git
+```
 
 
 
