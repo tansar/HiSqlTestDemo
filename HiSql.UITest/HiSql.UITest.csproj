@@ -1,0 +1,117 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HiSql" Version="1.0.1.9" />
+    <PackageReference Include="HiSql.SqlServer" Version="1.0.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+	  <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Demo.DBM">
+      <HintPath>..\..\..\NETCORE\Demo.DBM\Demo.DBM\bin\Debug\net5.0\Demo.DBM.dll</HintPath>
+    </Reference>
+    <Reference Include="Demo.DBM.Views">
+      <HintPath>..\..\..\NETCORE\Demo.DBM\Demo.DBM\bin\Debug\net5.0\Demo.DBM.Views.dll</HintPath>
+    </Reference>
+    <Reference Include="HiSql.WebUI">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\HiSql.WebUI.dll</HintPath>
+    </Reference>
+    <Reference Include="HiSql.WebUI.Views">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\HiSql.WebUI.Views.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Razor.Extensions">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Razor.Language">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Razor">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.OpenApi">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.OpenApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Web.CodeGeneration">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Web.CodeGeneration.Contracts">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Web.CodeGeneration.Core">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Web.CodeGeneration.Templating">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Web.CodeGeneration.Utils">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Web.CodeGenerators.Mvc">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.AspNetCore.Swagger">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.AspNetCore.SwaggerGen">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.AspNetCore.SwaggerUI">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts">
+      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+<ItemGroup>
+	<EmbeddedResource Include="wwwroot\**\*.*" />
+
+</ItemGroup>
+<ItemGroup>
+  <ProjectReference Include="..\..\..\NETCORE\HiSql.WebUI\HiSql.WebUI.csproj" />
+</ItemGroup>
+</Project>
