@@ -725,7 +725,7 @@
           }
         }
       },
-      "SqlSugar/5.0.4.2": {
+      "SqlSugar/5.0.4.7": {
         "type": "package",
         "compile": {
           "lib/SqlSugar.dll": {}
@@ -2215,15 +2215,15 @@
         "version.txt"
       ]
     },
-    "SqlSugar/5.0.4.2": {
-      "sha512": "wFjTc7JnMkX2y/ipRWanPWRya2W7ienJkxzoCIv6fKIb2IrOSD5NrOmgI3CjKg4z8n69KEj3hurcVjDupjcvPg==",
+    "SqlSugar/5.0.4.7": {
+      "sha512": "nY1V/lPpN9XIIcTgz1DaYTw+k+1F2NkrpbscktS23JzSgen7EvDESZOsSTLD294MMDd6SvAFF3EfeUgyYpMv/w==",
       "type": "package",
-      "path": "sqlsugar/5.0.4.2",
+      "path": "sqlsugar/5.0.4.7",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/SqlSugar.dll",
-        "sqlsugar.5.0.4.2.nupkg.sha512",
+        "sqlsugar.5.0.4.7.nupkg.sha512",
         "sqlsugar.nuspec"
       ]
     },
@@ -2952,7 +2952,7 @@
       "Microsoft.Extensions.Hosting >= 6.0.0",
       "Microsoft.Extensions.Hosting.Abstractions >= 6.0.0",
       "Newtonsoft.Json >= 13.0.1",
-      "SqlSugar >= 5.0.4.2",
+      "SqlSugar >= 5.0.4.7",
       "System.Data.SqlClient >= 4.8.3"
     ]
   },
@@ -3033,7 +3033,7 @@
           },
           "SqlSugar": {
             "target": "Package",
-            "version": "[5.0.4.2, )"
+            "version": "[5.0.4.7, )"
           },
           "System.Data.SqlClient": {
             "target": "Package",
@@ -3055,7 +3055,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -3064,7 +3064,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“net5.0”还原包“SqlSugar 5.0.4.2”。此包可能与项目不完全兼容。",
+      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“net5.0”还原包“SqlSugar 5.0.4.7”。此包可能与项目不完全兼容。",
       "libraryId": "SqlSugar",
       "targetGraphs": [
         "net5.0"

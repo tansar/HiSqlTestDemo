@@ -13,7 +13,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="SqlSugar" Version="5.0.4.2" />
+    <PackageReference Include="SqlSugar" Version="5.0.4.7" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
 
 

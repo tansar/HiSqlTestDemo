@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "ALFUbOTNUnI7yGcHOuAXN06A8itfp9IXkAmERwCe0aCEk+C2pdktI2OpNlgsxBlC95FPzhhoXHm5McqX9FaR3w==",
-  "success": true,
+  "dgSpecHash": "eQN/p1dXAz5Uyg2/OBwllzVS6DhFnty1oeuWbRcjx2feO94Fx99pBB//c0UFzlMxjgtveyP38A7MvHgqKEgF9A==",
+  "success": false,
   "projectFilePath": "D:\\Project\\OpenSource\\TestProject\\HiSql.UITest\\HiSql.UITest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\hisql\\1.0.1.9\\hisql.1.0.1.9.nupkg.sha512",
@@ -139,5 +139,15 @@
     "C:\\Users\\admin\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "检测到包降级: HiSql 从 1.0.2.2 降级到 1.0.1.9。直接从项目引用包以选择不同版本。 \r\n HiSql.UITest -> HiSql.WebUI -> HiSql (>= 1.0.2.2) \r\n HiSql.UITest -> HiSql (>= 1.0.1.9)",
+      "libraryId": "HiSql",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

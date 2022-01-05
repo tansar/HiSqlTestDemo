@@ -76,7 +76,7 @@
             },
             "SqlSugar": {
               "target": "Package",
-              "version": "[5.0.4.2, )"
+              "version": "[5.0.4.7, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
@@ -98,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

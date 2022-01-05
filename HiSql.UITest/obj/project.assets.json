@@ -2177,7 +2177,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "HiSql": "1.0.1.9",
+          "HiSql": "1.0.2.2",
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "5.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "3.1.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2"
@@ -7332,8 +7332,19 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "检测到包降级: HiSql 从 1.0.2.2 降级到 1.0.1.9。直接从项目引用包以选择不同版本。 \r\n HiSql.UITest -> HiSql.WebUI -> HiSql (>= 1.0.2.2) \r\n HiSql.UITest -> HiSql (>= 1.0.1.9)",
+      "libraryId": "HiSql",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

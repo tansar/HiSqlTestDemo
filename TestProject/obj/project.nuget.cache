@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "z/PfDL1ruyh8zwSFf3GiUc3q50zgc60EBSG3cw2Oe/ebNHnBKgOdS3s1C49LBW/yzlw4lOC1xKezz7FBgdHSzA==",
+  "dgSpecHash": "lkun+oxstFVRr+8mnH/Am6eJsc6I+OvKYrHQReJyuLEyUefiu65iISEe8yfRpUml/cDwGiZoi2wBCJmdAqvs5w==",
   "success": true,
   "projectFilePath": "D:\\Project\\OpenSource\\TestProject\\TestProject\\TestProject.csproj",
   "expectedPackageFiles": [
@@ -54,7 +54,7 @@
     "C:\\Users\\admin\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
-    "C:\\Users\\admin\\.nuget\\packages\\sqlsugar\\5.0.4.2\\sqlsugar.5.0.4.2.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\sqlsugar\\5.0.4.7\\sqlsugar.5.0.4.7.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
@@ -80,7 +80,7 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“net5.0”还原包“SqlSugar 5.0.4.2”。此包可能与项目不完全兼容。",
+      "message": "已使用“.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8”而不是项目目标框架“net5.0”还原包“SqlSugar 5.0.4.7”。此包可能与项目不完全兼容。",
       "libraryId": "SqlSugar",
       "targetGraphs": [
         "net5.0"
