@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\OpenSource\\TestProject\\TestProject\\TestProject.csproj": {}
+    "D:\\Project\\OpenSource\\HiSqlTestDemo\\HiSqlTestDemo\\TestProject\\TestProject.csproj": {}
   },
   "projects": {
-    "D:\\Project\\OpenSource\\TestProject\\TestProject\\TestProject.csproj": {
+    "D:\\Project\\OpenSource\\HiSqlTestDemo\\HiSqlTestDemo\\TestProject\\TestProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\OpenSource\\TestProject\\TestProject\\TestProject.csproj",
+        "projectUniqueName": "D:\\Project\\OpenSource\\HiSqlTestDemo\\HiSqlTestDemo\\TestProject\\TestProject.csproj",
         "projectName": "TestProject",
-        "projectPath": "D:\\Project\\OpenSource\\TestProject\\TestProject\\TestProject.csproj",
+        "projectPath": "D:\\Project\\OpenSource\\HiSqlTestDemo\\HiSqlTestDemo\\TestProject\\TestProject.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\OpenSource\\TestProject\\TestProject\\obj\\",
+        "outputPath": "D:\\Project\\OpenSource\\HiSqlTestDemo\\HiSqlTestDemo\\TestProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -54,19 +54,15 @@
               "target": "Package",
               "version": "[2.6.100, )"
             },
-            "Microsoft.AspNetCore.Hosting.Abstractions": {
+            "HiSql": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[1.0.2.8, )"
+            },
+            "HiSql.SqlServer": {
+              "target": "Package",
+              "version": "[1.0.2.8, )"
             },
             "Microsoft.Extensions.Caching.Memory": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "Microsoft.Extensions.Hosting": {
-              "target": "Package",
-              "version": "[6.0.0, )"
-            },
-            "Microsoft.Extensions.Hosting.Abstractions": {
               "target": "Package",
               "version": "[6.0.0, )"
             },
@@ -76,7 +72,7 @@
             },
             "SqlSugar": {
               "target": "Package",
-              "version": "[5.0.4.7, )"
+              "version": "[5.0.5.1, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

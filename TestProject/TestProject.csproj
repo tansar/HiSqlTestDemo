@@ -8,34 +8,12 @@
   <ItemGroup>
     <PackageReference Include="FreeSql" Version="2.6.100" />
     <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.6.100" />
-    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="HiSql" Version="1.0.2.8" />
+    <PackageReference Include="HiSql.SqlServer" Version="1.0.2.8" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="SqlSugar" Version="5.0.4.7" />
+    <PackageReference Include="SqlSugar" Version="5.0.5.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
-
-
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Reference Include="HiSql">
-      <HintPath>..\..\HiSql\HiSql\bin\Debug\net5.0\HiSql.dll</HintPath>
-    </Reference>
-    <Reference Include="HiSql.SqlServer">
-      <HintPath>..\..\HiSql\HiSql.SqlServer\bin\Debug\net5.0\HiSql.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="HiSql.WebUI">
-      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\HiSql.WebUI.dll</HintPath>
-    </Reference>
-    <Reference Include="HiSql.WebUI.Views">
-      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\HiSql.WebUI.Views.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\NETCORE\HiSql.WebUI\bin\Debug\net5.0\Newtonsoft.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
