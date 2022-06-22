@@ -6,13 +6,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FreeSql" Version="2.6.100" />
-    <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.6.100" />
-    <PackageReference Include="HiSql" Version="1.0.2.8" />
-    <PackageReference Include="HiSql.SqlServer" Version="1.0.2.8" />
-    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.0" />
+    <PackageReference Include="FreeSql" Version="3.2.664" />
+    <PackageReference Include="FreeSql.Provider.MySql" Version="3.2.664" />
+    <PackageReference Include="FreeSql.Provider.Oracle" Version="3.2.664" />
+    <PackageReference Include="FreeSql.Provider.PostgreSQL" Version="3.2.664" />
+    <PackageReference Include="FreeSql.Provider.SqlServer" Version="3.2.664" />
+    <PackageReference Include="HiSql" Version="1.0.4.2" />
+    <PackageReference Include="HiSql.MySql" Version="1.0.4.2" />
+    <PackageReference Include="HiSql.Oracle" Version="1.0.4.2" />
+    <PackageReference Include="HiSql.PostGreSql" Version="1.0.4.2" />
+    <PackageReference Include="HiSql.SqlServer" Version="1.0.4.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="SqlSugar" Version="5.0.5.1" />
+    <PackageReference Include="SqlSugar" Version="5.0.9.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 

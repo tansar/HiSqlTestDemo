@@ -1,0 +1,46 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "6a0aafd2-954c-4649-9336-4dfcf85154e6": {
+      "ProjectGuid": "6a0aafd2-954c-4649-9336-4dfcf85154e6",
+      "DisplayName": "TestProject",
+      "ColorIndex": 0
+    },
+    "fa75a09a-d8a5-4e13-a6fb-a3c8ad203e40": {
+      "ProjectGuid": "fa75a09a-d8a5-4e13-a6fb-a3c8ad203e40",
+      "DisplayName": "FreeSql",
+      "ColorIndex": 1
+    },
+    "4e23811f-e66d-4d62-9351-216eea8e00e6": {
+      "ProjectGuid": "4e23811f-e66d-4d62-9351-216eea8e00e6",
+      "DisplayName": "FreeSql.Provider.MySql",
+      "ColorIndex": 2
+    },
+    "eaa16e58-018f-418a-83c0-e05d3dfddec9": {
+      "ProjectGuid": "eaa16e58-018f-418a-83c0-e05d3dfddec9",
+      "DisplayName": "HiSql",
+      "ColorIndex": 3
+    },
+    "b096a40e-006f-4ff4-a653-f47d2af73cbc": {
+      "ProjectGuid": "b096a40e-006f-4ff4-a653-f47d2af73cbc",
+      "DisplayName": "HiSql.MySql",
+      "ColorIndex": 4
+    },
+    "15bb7ce5-c1f5-4150-a562-c08971da1b20": {
+      "ProjectGuid": "15bb7ce5-c1f5-4150-a562-c08971da1b20",
+      "DisplayName": "FreeSql.Provider.SqlServer",
+      "ColorIndex": 5
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "杂项文件",
+      "ColorIndex": -1
+    },
+    "c85e642b-e158-43a5-8bcd-358db8c94799": {
+      "ProjectGuid": "c85e642b-e158-43a5-8bcd-358db8c94799",
+      "DisplayName": "HiSql.PostGreSql",
+      "ColorIndex": 6
+    }
+  },
+  "NextColorIndex": 7
+}
