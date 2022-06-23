@@ -11,7 +11,7 @@
     <PackageReference Include="FreeSql.Provider.Oracle" Version="3.2.664" />
     <PackageReference Include="FreeSql.Provider.PostgreSQL" Version="3.2.664" />
     <PackageReference Include="FreeSql.Provider.SqlServer" Version="3.2.664" />
-    <PackageReference Include="HiSql" Version="1.0.4.3" />
+    <PackageReference Include="HiSql" Version="1.0.4.4" />
     <PackageReference Include="HiSql.MySql" Version="1.0.4.3" />
     <PackageReference Include="HiSql.Oracle" Version="1.0.4.3" />
     <PackageReference Include="HiSql.PostGreSql" Version="1.0.4.3" />

@@ -145,6 +145,7 @@ namespace TestProject
 
 
 
+
             sqlClient.CodeFirst.CreateTable(typeof(Table.HTest01));
 
             Console.WriteLine("初始化hisql专用表成功!");
@@ -721,7 +722,20 @@ namespace TestProject
 
             Stopwatch sw = new Stopwatch();
 
-
+            #region sqlsugar
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------SqlSugar 测试----------");
+            Console.WriteLine($"SqlSugar 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var temp2 = sugarClient.Queryable<Table.H_Test50C02>("H_Test50C02").Where(w => w.TestDec1 < 1).ToList();
+            Console.WriteLine($"sqlsugar  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            sw.Start();
+            //sugarClient.Insertable(lstobj2).AS("HTest02").ExecuteCommand();
+            sugarClient.Fastest<Table.H_Test50C02>().BulkCopy(lstobj2);
+            sw.Stop();
+            Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            sw.Reset();
+            #endregion
 
             #region freesql
             sw.Reset();
@@ -760,20 +774,7 @@ namespace TestProject
 
 
 
-            #region sqlsugar
-            sw.Reset();
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("----------SqlSugar 测试----------");
-            Console.WriteLine($"SqlSugar 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
-            var temp2 = sugarClient.Queryable<Table.H_Test50C02>("H_Test50C02").Where(w => w.TestDec1 < 1).ToList();
-            Console.WriteLine($"sqlsugar  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
-            sw.Start();
-            //sugarClient.Insertable(lstobj2).AS("HTest02").ExecuteCommand();
-            sugarClient.Fastest<Table.H_Test50C02>().BulkCopy(lstobj2);
-            sw.Stop();
-            Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
-            sw.Reset();
-            #endregion
+            
         }
 
         #endregion

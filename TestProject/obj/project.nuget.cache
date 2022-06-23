@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "c5hlUaa5IFPpKgYcVZMLuQ+0LnKKHpKstbXsVK4pba+/x5v8TsiqHYRSNO/33I/ogIfy4HrQ+XU8ziSdpN2D2Q==",
+  "dgSpecHash": "mMs68WsuxxqbwQAP5fHCGqfZU80YfSfk2Btwo5aGcp1AfpKzvtF9VVi12BwmHXwV00X0tUFG6PrsPCsS27UK1A==",
   "success": true,
   "projectFilePath": "D:\\Project\\OpenSource\\Test\\HiSqlTestDemo\\TestProject\\TestProject.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,7 @@
     "C:\\Users\\admin\\.nuget\\packages\\freesql.provider.postgresql\\3.2.664\\freesql.provider.postgresql.3.2.664.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\freesql.provider.sqlserver\\3.2.664\\freesql.provider.sqlserver.3.2.664.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\google.protobuf\\3.19.4\\google.protobuf.3.19.4.nupkg.sha512",
-    "C:\\Users\\admin\\.nuget\\packages\\hisql\\1.0.4.3\\hisql.1.0.4.3.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\hisql\\1.0.4.4\\hisql.1.0.4.4.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\hisql.mysql\\1.0.4.3\\hisql.mysql.1.0.4.3.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\hisql.oracle\\1.0.4.3\\hisql.oracle.1.0.4.3.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\hisql.postgresql\\1.0.4.3\\hisql.postgresql.1.0.4.3.nupkg.sha512",

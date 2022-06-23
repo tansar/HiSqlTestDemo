@@ -68,7 +68,7 @@
             },
             "HiSql": {
               "target": "Package",
-              "version": "[1.0.4.3, )"
+              "version": "[1.0.4.4, )"
             },
             "HiSql.MySql": {
               "target": "Package",

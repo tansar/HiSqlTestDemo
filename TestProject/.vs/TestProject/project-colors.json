@@ -40,7 +40,22 @@
       "ProjectGuid": "c85e642b-e158-43a5-8bcd-358db8c94799",
       "DisplayName": "HiSql.PostGreSql",
       "ColorIndex": 6
+    },
+    "2eb0650e-3ae5-4200-bd53-0d6df6fb529f": {
+      "ProjectGuid": "2eb0650e-3ae5-4200-bd53-0d6df6fb529f",
+      "DisplayName": "HiSql",
+      "ColorIndex": 7
+    },
+    "f827b65a-4d28-4f54-9f54-1c01232c85b6": {
+      "ProjectGuid": "f827b65a-4d28-4f54-9f54-1c01232c85b6",
+      "DisplayName": "HiSql.Oracle",
+      "ColorIndex": 8
+    },
+    "5f89170d-1f06-440d-9bab-6071dc308391": {
+      "ProjectGuid": "5f89170d-1f06-440d-9bab-6071dc308391",
+      "DisplayName": "HiSql.SqlServer",
+      "ColorIndex": 9
     }
   },
-  "NextColorIndex": 7
+  "NextColorIndex": 10
 }

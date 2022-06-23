@@ -13,7 +13,7 @@
           "FreeSql.Provider.Oracle": "3.2.664",
           "FreeSql.Provider.PostgreSQL": "3.2.664",
           "FreeSql.Provider.SqlServer": "3.2.664",
-          "HiSql": "1.0.4.3",
+          "HiSql": "1.0.4.4",
           "HiSql.MySql": "1.0.4.3",
           "HiSql.Oracle": "1.0.4.3",
           "HiSql.PostGreSql": "1.0.4.3",
@@ -140,7 +140,7 @@
           }
         }
       },
-      "HiSql/1.0.4.3": {
+      "HiSql/1.0.4.4": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "4.0.0",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
@@ -149,14 +149,14 @@
         },
         "runtime": {
           "lib/net5.0/HiSql.dll": {
-            "assemblyVersion": "1.0.4.3",
-            "fileVersion": "1.0.4.3"
+            "assemblyVersion": "1.0.4.4",
+            "fileVersion": "1.0.4.4"
           }
         }
       },
       "HiSql.MySql/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.3",
+          "HiSql": "1.0.4.4",
           "MySql.Data": "8.0.29"
         },
         "runtime": {
@@ -168,7 +168,7 @@
       },
       "HiSql.Oracle/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.3",
+          "HiSql": "1.0.4.4",
           "Oracle.ManagedDataAccess.Core": "3.21.61",
           "System.Data.OracleClient": "1.0.8"
         },
@@ -181,7 +181,7 @@
       },
       "HiSql.PostGreSql/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.3",
+          "HiSql": "1.0.4.4",
           "Npgsql": "5.0.11"
         },
         "runtime": {
@@ -193,7 +193,7 @@
       },
       "HiSql.SqlServer/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.3",
+          "HiSql": "1.0.4.4",
           "Microsoft.Data.SqlClient": "4.0.0",
           "System.Data.SqlClient": "4.8.3"
         },
@@ -1103,12 +1103,12 @@
       "path": "google.protobuf/3.19.4",
       "hashPath": "google.protobuf.3.19.4.nupkg.sha512"
     },
-    "HiSql/1.0.4.3": {
+    "HiSql/1.0.4.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FW0JMOzmLSHNzxmNNs4cU16PCiy2gaSLdiMGw4nPm/eD5HF/toRBhUuyAGaidqIZHwqTaMLMWeMe2sO/oW8geQ==",
-      "path": "hisql/1.0.4.3",
-      "hashPath": "hisql.1.0.4.3.nupkg.sha512"
+      "sha512": "sha512-Y5eJviCVhR2y5JF7EQN5FrpCzLIYMtNXeL/Kpp2jyCjtJHuryaHWp8gcE+qJTEze5+6oFWzz/jFvmW+3BWnRFw==",
+      "path": "hisql/1.0.4.4",
+      "hashPath": "hisql.1.0.4.4.nupkg.sha512"
     },
     "HiSql.MySql/1.0.4.3": {
       "type": "package",
