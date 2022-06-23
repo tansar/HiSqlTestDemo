@@ -226,3 +226,4 @@ D:\Project\OpenSource\Test\HiSqlTestDemo\TestProject\obj\Debug\net5.0\TestProjec
 D:\Project\OpenSource\Test\HiSqlTestDemo\TestProject\obj\Debug\net5.0\ref\TestProject.dll
 D:\Project\OpenSource\Test\HiSqlTestDemo\TestProject\obj\Debug\net5.0\TestProject.pdb
 D:\Project\OpenSource\Test\HiSqlTestDemo\TestProject\obj\Debug\net5.0\TestProject.genruntimeconfig.cache
+D:\Project\OpenSource\Test\HiSqlTestDemo\TestProject\obj\Debug\net5.0\TestProject.csproj.AssemblyReference.cache

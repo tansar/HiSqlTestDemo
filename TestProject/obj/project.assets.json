@@ -124,7 +124,7 @@
           "lib/net5.0/Google.Protobuf.dll": {}
         }
       },
-      "HiSql/1.0.4.2": {
+      "HiSql/1.0.4.3": {
         "type": "package",
         "dependencies": {
           "Microsoft.Data.SqlClient": "4.0.0",
@@ -139,10 +139,10 @@
           "lib/net5.0/HiSql.dll": {}
         }
       },
-      "HiSql.MySql/1.0.4.2": {
+      "HiSql.MySql/1.0.4.3": {
         "type": "package",
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "MySql.Data": "8.0.29"
         },
         "compile": {
@@ -152,10 +152,10 @@
           "lib/net5.0/HiSql.MySql.dll": {}
         }
       },
-      "HiSql.Oracle/1.0.4.2": {
+      "HiSql.Oracle/1.0.4.3": {
         "type": "package",
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "Oracle.ManagedDataAccess.Core": "3.21.4",
           "System.Data.OracleClient": "1.0.8"
         },
@@ -166,10 +166,10 @@
           "lib/net5.0/HiSql.Oracle.dll": {}
         }
       },
-      "HiSql.PostGreSql/1.0.4.2": {
+      "HiSql.PostGreSql/1.0.4.3": {
         "type": "package",
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "Npgsql": "5.0.7"
         },
         "compile": {
@@ -179,10 +179,10 @@
           "lib/net5.0/HiSql.PostGreSql.dll": {}
         }
       },
-      "HiSql.SqlServer/1.0.4.2": {
+      "HiSql.SqlServer/1.0.4.3": {
         "type": "package",
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "Microsoft.Data.SqlClient": "4.0.0",
           "System.Data.SqlClient": "4.8.3"
         },
@@ -1482,15 +1482,15 @@
         "lib/netstandard2.0/Google.Protobuf.xml"
       ]
     },
-    "HiSql/1.0.4.2": {
-      "sha512": "nOSl9SKrDN4TfN4WtF+6Y/9wNgfNuvx5X1FRIUZvR1H0QtW4Xz//K+mAbLXafdj/7R1N0vb52Kpcs662Q3CFyw==",
+    "HiSql/1.0.4.3": {
+      "sha512": "FW0JMOzmLSHNzxmNNs4cU16PCiy2gaSLdiMGw4nPm/eD5HF/toRBhUuyAGaidqIZHwqTaMLMWeMe2sO/oW8geQ==",
       "type": "package",
-      "path": "hisql/1.0.4.2",
+      "path": "hisql/1.0.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "hisql-logo.jpg",
-        "hisql.1.0.4.2.nupkg.sha512",
+        "hisql.1.0.4.3.nupkg.sha512",
         "hisql.nuspec",
         "lib/net461/HiSql.dll",
         "lib/net5.0/HiSql.dll",
@@ -1498,15 +1498,15 @@
         "lib/netcoreapp3.1/HiSql.dll"
       ]
     },
-    "HiSql.MySql/1.0.4.2": {
-      "sha512": "nRWiednrVSH2I9fq9Q511PQh/kuzRqU7quKVnqdPCfwT5nW+IdQatDHAF4Eeq9FKW4v9ft9RgWRIeLKOyerFhg==",
+    "HiSql.MySql/1.0.4.3": {
+      "sha512": "zK9/fGMRheGYduV0jO7425YjVPdGQrK0tT/yb0WlVx0rQctoJfDvqRWqDRLdHKxWv38TxFo1CXsDdvTjegm/Nw==",
       "type": "package",
-      "path": "hisql.mysql/1.0.4.2",
+      "path": "hisql.mysql/1.0.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "hisql-mysql-logo.jpg",
-        "hisql.mysql.1.0.4.2.nupkg.sha512",
+        "hisql.mysql.1.0.4.3.nupkg.sha512",
         "hisql.mysql.nuspec",
         "lib/net461/HiSql.MySql.dll",
         "lib/net5.0/HiSql.MySql.dll",
@@ -1514,15 +1514,15 @@
         "lib/netcoreapp3.1/HiSql.MySql.dll"
       ]
     },
-    "HiSql.Oracle/1.0.4.2": {
-      "sha512": "SFerJq/qAoySfwK9fSvBuGw4ox/janA26bYKpHdXqGUt1oZt2ZoNeGerN8VM8hks6cjNFQp0cu0aOPaJ8xAJMw==",
+    "HiSql.Oracle/1.0.4.3": {
+      "sha512": "/dguvGkDtbwjEpLOsQ/jmupGxqoK6/Wp4PI+IYa10kXzpdI02jLs0hdvgKiO7tnDKL5v3F+peeCUEFevK56JIA==",
       "type": "package",
-      "path": "hisql.oracle/1.0.4.2",
+      "path": "hisql.oracle/1.0.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "hisql-oracle-logo.jpg",
-        "hisql.oracle.1.0.4.2.nupkg.sha512",
+        "hisql.oracle.1.0.4.3.nupkg.sha512",
         "hisql.oracle.nuspec",
         "lib/net461/HiSql.Oracle.dll",
         "lib/net5.0/HiSql.Oracle.dll",
@@ -1530,15 +1530,15 @@
         "lib/netcoreapp3.1/HiSql.Oracle.dll"
       ]
     },
-    "HiSql.PostGreSql/1.0.4.2": {
-      "sha512": "he7JsJBdIEG8pSFaP9AChGUFO32RHhXFaBkNbh2imt/EavCRHaInzLm3KoE3nYDS96vttpe8sWGHrskCOSNwmg==",
+    "HiSql.PostGreSql/1.0.4.3": {
+      "sha512": "+QEJNL+ajFaGImfFVgoL3DDu+5aMpCD2cawU0GgKcjkQM19U2/eNARIAYUATtsGrRPY/aWtADclCbUv+bFFNOw==",
       "type": "package",
-      "path": "hisql.postgresql/1.0.4.2",
+      "path": "hisql.postgresql/1.0.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "hisql-postgre-logo.jpg",
-        "hisql.postgresql.1.0.4.2.nupkg.sha512",
+        "hisql.postgresql.1.0.4.3.nupkg.sha512",
         "hisql.postgresql.nuspec",
         "lib/net461/HiSql.PostGreSql.dll",
         "lib/net5.0/HiSql.PostGreSql.dll",
@@ -1546,15 +1546,15 @@
         "lib/netcoreapp3.1/HiSql.PostGreSql.dll"
       ]
     },
-    "HiSql.SqlServer/1.0.4.2": {
-      "sha512": "8HINeN+dl090zorKf3W/nvd1pY9mXxmW0xApNhkYWODzytMZVLnXI+F4W1TArPoMzuS4syw49S/m79kogT7iQg==",
+    "HiSql.SqlServer/1.0.4.3": {
+      "sha512": "OVmC9I1Z3m17HMFh4OO86uqLiNOrOfEBWMN4VKUy5voL8bTMKy69FSP7SvmnPj+OQa9LzdOk+5dzIByvcoCN0A==",
       "type": "package",
-      "path": "hisql.sqlserver/1.0.4.2",
+      "path": "hisql.sqlserver/1.0.4.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "hisql-sqlserver-logo.jpg",
-        "hisql.sqlserver.1.0.4.2.nupkg.sha512",
+        "hisql.sqlserver.1.0.4.3.nupkg.sha512",
         "hisql.sqlserver.nuspec",
         "lib/net461/HiSql.SqlServer.dll",
         "lib/net5.0/HiSql.SqlServer.dll",
@@ -4261,11 +4261,11 @@
       "FreeSql.Provider.Oracle >= 3.2.664",
       "FreeSql.Provider.PostgreSQL >= 3.2.664",
       "FreeSql.Provider.SqlServer >= 3.2.664",
-      "HiSql >= 1.0.4.2",
-      "HiSql.MySql >= 1.0.4.2",
-      "HiSql.Oracle >= 1.0.4.2",
-      "HiSql.PostGreSql >= 1.0.4.2",
-      "HiSql.SqlServer >= 1.0.4.2",
+      "HiSql >= 1.0.4.3",
+      "HiSql.MySql >= 1.0.4.3",
+      "HiSql.Oracle >= 1.0.4.3",
+      "HiSql.PostGreSql >= 1.0.4.3",
+      "HiSql.SqlServer >= 1.0.4.3",
       "Microsoft.Extensions.Caching.Memory >= 6.0.1",
       "Newtonsoft.Json >= 13.0.1",
       "SqlSugar >= 5.0.9.1",
@@ -4341,23 +4341,23 @@
           },
           "HiSql": {
             "target": "Package",
-            "version": "[1.0.4.2, )"
+            "version": "[1.0.4.3, )"
           },
           "HiSql.MySql": {
             "target": "Package",
-            "version": "[1.0.4.2, )"
+            "version": "[1.0.4.3, )"
           },
           "HiSql.Oracle": {
             "target": "Package",
-            "version": "[1.0.4.2, )"
+            "version": "[1.0.4.3, )"
           },
           "HiSql.PostGreSql": {
             "target": "Package",
-            "version": "[1.0.4.2, )"
+            "version": "[1.0.4.3, )"
           },
           "HiSql.SqlServer": {
             "target": "Package",
-            "version": "[1.0.4.2, )"
+            "version": "[1.0.4.3, )"
           },
           "Microsoft.Extensions.Caching.Memory": {
             "target": "Package",

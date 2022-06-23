@@ -13,11 +13,11 @@
           "FreeSql.Provider.Oracle": "3.2.664",
           "FreeSql.Provider.PostgreSQL": "3.2.664",
           "FreeSql.Provider.SqlServer": "3.2.664",
-          "HiSql": "1.0.4.2",
-          "HiSql.MySql": "1.0.4.2",
-          "HiSql.Oracle": "1.0.4.2",
-          "HiSql.PostGreSql": "1.0.4.2",
-          "HiSql.SqlServer": "1.0.4.2",
+          "HiSql": "1.0.4.3",
+          "HiSql.MySql": "1.0.4.3",
+          "HiSql.Oracle": "1.0.4.3",
+          "HiSql.PostGreSql": "1.0.4.3",
+          "HiSql.SqlServer": "1.0.4.3",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
           "Newtonsoft.Json": "13.0.1",
           "SqlSugar": "5.0.9.1",
@@ -140,7 +140,7 @@
           }
         }
       },
-      "HiSql/1.0.4.2": {
+      "HiSql/1.0.4.3": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "4.0.0",
           "Microsoft.Extensions.Caching.Memory": "6.0.1",
@@ -149,58 +149,58 @@
         },
         "runtime": {
           "lib/net5.0/HiSql.dll": {
-            "assemblyVersion": "1.0.4.2",
-            "fileVersion": "1.0.4.2"
+            "assemblyVersion": "1.0.4.3",
+            "fileVersion": "1.0.4.3"
           }
         }
       },
-      "HiSql.MySql/1.0.4.2": {
+      "HiSql.MySql/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "MySql.Data": "8.0.29"
         },
         "runtime": {
           "lib/net5.0/HiSql.MySql.dll": {
-            "assemblyVersion": "1.0.4.2",
-            "fileVersion": "1.0.4.2"
+            "assemblyVersion": "1.0.4.3",
+            "fileVersion": "1.0.4.3"
           }
         }
       },
-      "HiSql.Oracle/1.0.4.2": {
+      "HiSql.Oracle/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "Oracle.ManagedDataAccess.Core": "3.21.61",
           "System.Data.OracleClient": "1.0.8"
         },
         "runtime": {
           "lib/net5.0/HiSql.Oracle.dll": {
-            "assemblyVersion": "1.0.4.2",
-            "fileVersion": "1.0.4.2"
+            "assemblyVersion": "1.0.4.3",
+            "fileVersion": "1.0.4.3"
           }
         }
       },
-      "HiSql.PostGreSql/1.0.4.2": {
+      "HiSql.PostGreSql/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "Npgsql": "5.0.11"
         },
         "runtime": {
           "lib/net5.0/HiSql.PostGreSql.dll": {
-            "assemblyVersion": "1.0.4.2",
-            "fileVersion": "1.0.4.2"
+            "assemblyVersion": "1.0.4.3",
+            "fileVersion": "1.0.4.3"
           }
         }
       },
-      "HiSql.SqlServer/1.0.4.2": {
+      "HiSql.SqlServer/1.0.4.3": {
         "dependencies": {
-          "HiSql": "1.0.4.2",
+          "HiSql": "1.0.4.3",
           "Microsoft.Data.SqlClient": "4.0.0",
           "System.Data.SqlClient": "4.8.3"
         },
         "runtime": {
           "lib/net5.0/HiSql.SqlServer.dll": {
-            "assemblyVersion": "1.0.4.2",
-            "fileVersion": "1.0.4.2"
+            "assemblyVersion": "1.0.4.3",
+            "fileVersion": "1.0.4.3"
           }
         }
       },
@@ -1103,40 +1103,40 @@
       "path": "google.protobuf/3.19.4",
       "hashPath": "google.protobuf.3.19.4.nupkg.sha512"
     },
-    "HiSql/1.0.4.2": {
+    "HiSql/1.0.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nOSl9SKrDN4TfN4WtF+6Y/9wNgfNuvx5X1FRIUZvR1H0QtW4Xz//K+mAbLXafdj/7R1N0vb52Kpcs662Q3CFyw==",
-      "path": "hisql/1.0.4.2",
-      "hashPath": "hisql.1.0.4.2.nupkg.sha512"
+      "sha512": "sha512-FW0JMOzmLSHNzxmNNs4cU16PCiy2gaSLdiMGw4nPm/eD5HF/toRBhUuyAGaidqIZHwqTaMLMWeMe2sO/oW8geQ==",
+      "path": "hisql/1.0.4.3",
+      "hashPath": "hisql.1.0.4.3.nupkg.sha512"
     },
-    "HiSql.MySql/1.0.4.2": {
+    "HiSql.MySql/1.0.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-nRWiednrVSH2I9fq9Q511PQh/kuzRqU7quKVnqdPCfwT5nW+IdQatDHAF4Eeq9FKW4v9ft9RgWRIeLKOyerFhg==",
-      "path": "hisql.mysql/1.0.4.2",
-      "hashPath": "hisql.mysql.1.0.4.2.nupkg.sha512"
+      "sha512": "sha512-zK9/fGMRheGYduV0jO7425YjVPdGQrK0tT/yb0WlVx0rQctoJfDvqRWqDRLdHKxWv38TxFo1CXsDdvTjegm/Nw==",
+      "path": "hisql.mysql/1.0.4.3",
+      "hashPath": "hisql.mysql.1.0.4.3.nupkg.sha512"
     },
-    "HiSql.Oracle/1.0.4.2": {
+    "HiSql.Oracle/1.0.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SFerJq/qAoySfwK9fSvBuGw4ox/janA26bYKpHdXqGUt1oZt2ZoNeGerN8VM8hks6cjNFQp0cu0aOPaJ8xAJMw==",
-      "path": "hisql.oracle/1.0.4.2",
-      "hashPath": "hisql.oracle.1.0.4.2.nupkg.sha512"
+      "sha512": "sha512-/dguvGkDtbwjEpLOsQ/jmupGxqoK6/Wp4PI+IYa10kXzpdI02jLs0hdvgKiO7tnDKL5v3F+peeCUEFevK56JIA==",
+      "path": "hisql.oracle/1.0.4.3",
+      "hashPath": "hisql.oracle.1.0.4.3.nupkg.sha512"
     },
-    "HiSql.PostGreSql/1.0.4.2": {
+    "HiSql.PostGreSql/1.0.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-he7JsJBdIEG8pSFaP9AChGUFO32RHhXFaBkNbh2imt/EavCRHaInzLm3KoE3nYDS96vttpe8sWGHrskCOSNwmg==",
-      "path": "hisql.postgresql/1.0.4.2",
-      "hashPath": "hisql.postgresql.1.0.4.2.nupkg.sha512"
+      "sha512": "sha512-+QEJNL+ajFaGImfFVgoL3DDu+5aMpCD2cawU0GgKcjkQM19U2/eNARIAYUATtsGrRPY/aWtADclCbUv+bFFNOw==",
+      "path": "hisql.postgresql/1.0.4.3",
+      "hashPath": "hisql.postgresql.1.0.4.3.nupkg.sha512"
     },
-    "HiSql.SqlServer/1.0.4.2": {
+    "HiSql.SqlServer/1.0.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-8HINeN+dl090zorKf3W/nvd1pY9mXxmW0xApNhkYWODzytMZVLnXI+F4W1TArPoMzuS4syw49S/m79kogT7iQg==",
-      "path": "hisql.sqlserver/1.0.4.2",
-      "hashPath": "hisql.sqlserver.1.0.4.2.nupkg.sha512"
+      "sha512": "sha512-OVmC9I1Z3m17HMFh4OO86uqLiNOrOfEBWMN4VKUy5voL8bTMKy69FSP7SvmnPj+OQa9LzdOk+5dzIByvcoCN0A==",
+      "path": "hisql.sqlserver/1.0.4.3",
+      "hashPath": "hisql.sqlserver.1.0.4.3.nupkg.sha512"
     },
     "K4os.Compression.LZ4/1.2.6": {
       "type": "package",

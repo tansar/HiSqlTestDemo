@@ -68,23 +68,23 @@
             },
             "HiSql": {
               "target": "Package",
-              "version": "[1.0.4.2, )"
+              "version": "[1.0.4.3, )"
             },
             "HiSql.MySql": {
               "target": "Package",
-              "version": "[1.0.4.2, )"
+              "version": "[1.0.4.3, )"
             },
             "HiSql.Oracle": {
               "target": "Package",
-              "version": "[1.0.4.2, )"
+              "version": "[1.0.4.3, )"
             },
             "HiSql.PostGreSql": {
               "target": "Package",
-              "version": "[1.0.4.2, )"
+              "version": "[1.0.4.3, )"
             },
             "HiSql.SqlServer": {
               "target": "Package",
-              "version": "[1.0.4.2, )"
+              "version": "[1.0.4.3, )"
             },
             "Microsoft.Extensions.Caching.Memory": {
               "target": "Package",
