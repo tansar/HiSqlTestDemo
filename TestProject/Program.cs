@@ -19,18 +19,16 @@ namespace TestProject
 
 
             //插入的记录数设置
-            int _count =1000000;
+            int _count =100;
 
-            //Test.TestSqlServerInsert(_count);
-
-
+           Test.TestSqlServerInsert(_count);
 
 
             //Test.TestSqlServer50ColInsert(_count);
 
             //Test.TestSqlServerBulkCopy(_count);
 
-            Test.TestSqlServer50ColBulkCopy(_count);
+            //Test.TestSqlServer50ColBulkCopy(_count);
 
 
             //Test.TestPosgreSqlInsert(_count);

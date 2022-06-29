@@ -2,10 +2,17 @@
 using SqlSugar;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Dapper;
+using System.Data.SqlClient;
+using DapperExtensions.Sql;
+using DapperExtensions;
+using Z.Dapper.Plus;
+using EFCore.BulkExtensions;
 
 namespace TestProject
 {
@@ -30,7 +37,10 @@ namespace TestProject
             //sqlsugar连接
             SqlSugarClient sugarClient = Demo_Init.GetSugarClient();
 
-            
+
+            IDbConnection dapper = Demo_Init.GetDapperSqlClient();
+
+
 
             sqlClient.CodeFirst.CreateTable(typeof(Table.HTest01));
 
@@ -46,15 +56,26 @@ namespace TestProject
             Console.WriteLine("初始化freesql专用表成功!");
 
 
+            sqlClient.CodeFirst.CreateTable(typeof(Table.HTest04));
+            Console.WriteLine("初始化dapper专用表成功!");
+
+
+
+            MyDBContext efcontext = Demo_Init.GetEFCoreClient();
+            sqlClient.CodeFirst.CreateTable(typeof(Table.HTest05));
+            Console.WriteLine("初始化efcore专用表成功!");
+
             Console.WriteLine($"测试场景 Sqlserver  向表中插入{_count}条数据 常规数据插入)");
             Console.WriteLine($"用常规数据插入最适应日常应用场景");
 
 
 
 
-            List<object> lstobj = new List<object>();
-            List<Table.HTest02> lstobj2 = new List<Table.HTest02>();
-            List<Table.HTest03> lstobj3 = new List<Table.HTest03>();
+            List<object> lstobj = new List<object>();//hisql
+            List<Table.HTest02> lstobj2 = new List<Table.HTest02>();//sqlsugar
+            List<Table.HTest03> lstobj3 = new List<Table.HTest03>();//freesql
+            List<Table.HTest04> lstobj4 = new List<Table.HTest04>();//dapper
+            List<Table.HTest05> lstobj5 = new List<Table.HTest05>();//efcore
             Random random = new Random();
 
             //插入的参数值都随机产生 以免数据库执行相同SQL时会有缓存影响测试结果
@@ -65,14 +86,18 @@ namespace TestProject
 
                 //sqlsugar用匿句类报错用实体类
                 lstobj2.Add(new Table.HTest02 { SID = (i + 1), UName = $"sqlsugar{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"sqlsugar初始创建" });
-                lstobj3.Add(new Table.HTest03 { SID = (i + 1), UName = $"freesql{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"freesql初始创建" });
+                lstobj3.Add(new Table.HTest03 { SID = (i + 1), UName = $"freesql{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"freesql初始创建" ,});
+                lstobj4.Add(new Table.HTest04 { SID = (i + 1), UName = $"dappper{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"dapper初始创建" ,CreateName="dapper",ModiName="dapper",CreateTime=DateTime.Now,ModiTime=DateTime.Now});
+                lstobj5.Add(new Table.HTest05 { SID = (i + 1), UName = $"efcore{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"efcore初始创建", CreateName = "efcore", ModiName = "efcore", CreateTime = DateTime.Now, ModiTime = DateTime.Now });
+
             }
 
             //删除测试表中的数据
             sqlClient.TrunCate("HTest01").ExecCommand();
             sqlClient.TrunCate("HTest02").ExecCommand();
             sqlClient.TrunCate("HTest03").ExecCommand();
-
+            sqlClient.TrunCate("HTest04").ExecCommand();
+            sqlClient.TrunCate("HTest05").ExecCommand();
             Stopwatch sw = new Stopwatch();
 
 
@@ -125,6 +150,49 @@ namespace TestProject
             Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
             sw.Reset();
             #endregion
+
+
+
+            #region dapper
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------Dapper 测试----------");
+            Console.WriteLine($"Dapper 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var temp4 = dapper.Query<Table.HTest04>("select * from HTest04 where Age<@Age", new { Age = -1 }).ToList();
+
+            Console.WriteLine($"Dapper  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            sw.Start();
+
+            //dapper.BulkInsert<Table.HTest04>(lstobj4);
+
+            dapper.Execute("insert into HTest04(SID,UName,Age,Salary,Descript,CreateName,ModiName)values(@SID,@UName,@Age,@Salary,@Descript,@CreateName,@ModiName)", lstobj4);
+            sw.Stop();
+            Console.WriteLine($"Dapper 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            sw.Reset();
+
+            #endregion
+
+            #region efcore
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------efcore 测试----------");
+            Console.WriteLine($"efcore 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var data = efcontext.HTest05.ToList();
+            {
+
+
+                Console.WriteLine($"efcore  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+                sw.Start();
+
+                efcontext.HTest05.AddRange(lstobj5);
+                efcontext.SaveChanges();
+                sw.Stop();
+                Console.WriteLine($"efcore 数据插入{_count}条 耗时{sw.Elapsed}秒");
+                sw.Reset();
+            }
+
+
+            #endregion
         }
 
 
@@ -144,7 +212,8 @@ namespace TestProject
             SqlSugarClient sugarClient = Demo_Init.GetSugarClient();
 
 
-
+            //dapper 
+            IDbConnection dapper = Demo_Init.GetDapperSqlClient();
 
             sqlClient.CodeFirst.CreateTable(typeof(Table.HTest01));
 
@@ -159,6 +228,10 @@ namespace TestProject
             sqlClient.CodeFirst.CreateTable(typeof(Table.HTest03));
             Console.WriteLine("初始化freesql专用表成功!");
 
+            MyDBContext efcontext = Demo_Init.GetEFCoreClient();
+            sqlClient.CodeFirst.CreateTable(typeof(Table.HTest05));
+            Console.WriteLine("初始化efcore专用表成功!");
+
 
             Console.WriteLine($"测试场景 Sqlserver  向表中插入{_count}条数据 BulkCopy方式插入");
             Console.WriteLine($"适用于大量数据导入场景");
@@ -169,6 +242,8 @@ namespace TestProject
             List<object> lstobj = new List<object>();
             List<Table.HTest02> lstobj2 = new List<Table.HTest02>();
             List<Table.HTest03> lstobj3 = new List<Table.HTest03>();
+            List<Table.HTest04> lstobj4 = new List<Table.HTest04>();
+            List<Table.HTest05> lstobj5 = new List<Table.HTest05>();
             Random random = new Random();
 
             //插入的参数值都随机产生 以免数据库执行相同SQL时会有缓存影响测试结果
@@ -180,13 +255,16 @@ namespace TestProject
                 //sqlsugar用匿句类报错用实体类
                 lstobj2.Add(new Table.HTest02 { SID = (i + 1), UName = $"sqlsugar{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"sqlsugar初始创建" });
                 lstobj3.Add(new Table.HTest03 { SID = (i + 1), UName = $"freesql{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"freesql初始创建" });
+                lstobj4.Add(new Table.HTest04 { SID = (i + 1), UName = $"dappper{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"dapper初始创建", CreateName = "dapper", ModiName = "dapper", CreateTime = DateTime.Now, ModiTime = DateTime.Now });
+                lstobj5.Add(new Table.HTest05 { SID = (i + 1), UName = $"efcore{i}", Age = 20 + (i % 50), Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"efcore初始创建", CreateName = "efcore", ModiName = "efcore", CreateTime = DateTime.Now, ModiTime = DateTime.Now });
             }
 
             //删除测试表中的数据
             sqlClient.TrunCate("HTest01").ExecCommand();
             sqlClient.TrunCate("HTest02").ExecCommand();
             sqlClient.TrunCate("HTest03").ExecCommand();
-
+            sqlClient.TrunCate("HTest04").ExecCommand();
+            sqlClient.TrunCate("HTest05").ExecCommand();
             Stopwatch sw = new Stopwatch();
 
 
@@ -224,10 +302,6 @@ namespace TestProject
             #endregion
 
 
-
-
-
-
             #region sqlsugar
             sw.Reset();
             Console.WriteLine("------------------------------");
@@ -241,6 +315,52 @@ namespace TestProject
             sw.Stop();
             Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
             sw.Reset();
+            #endregion
+
+            #region dapper
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------Dapper 测试----------");
+            Console.WriteLine($"Dapper 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var temp4 = dapper.Query<Table.HTest04>("select * from HTest04 where Age<@Age", new { Age = -1 }).ToList();
+
+            Console.WriteLine($"Dapper  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            sw.Start();
+
+
+            //https://dapper-tutorial.net/online-examples 根据 这里的例子实现
+
+            dapper.BulkInsert<Table.HTest04>(lstobj4);
+
+            
+            sw.Stop();
+            Console.WriteLine($"Dapper 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            sw.Reset();
+
+            #endregion
+
+
+            #region efcore
+            //sw.Reset();
+            //Console.WriteLine("------------------------------");
+            //Console.WriteLine("----------efcore 测试----------");
+            //Console.WriteLine($"efcore 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            //var data = efcontext.HTest05.ToList();
+            //{
+
+
+            //    Console.WriteLine($"efcore  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            //    sw.Start();
+
+            //    efcontext.BulkInsert(lstobj5); 
+
+            //    efcontext.SaveChanges();
+            //    sw.Stop();
+            //    Console.WriteLine($"efcore 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            //    sw.Reset();
+            //}
+
+
             #endregion
         }
 
@@ -262,6 +382,8 @@ namespace TestProject
             //sqlsugar连接
             SqlSugarClient sugarClient = Demo_Init.GetSugarClient();
 
+            //dapper连接
+            IDbConnection dapper = Demo_Init.GetDapperSqlClient();
 
 
             sqlClient.CodeFirst.CreateTable(typeof(Table.H_Test50C01));
@@ -277,22 +399,34 @@ namespace TestProject
             sqlClient.CodeFirst.CreateTable(typeof(Table.H_Test50C03));
             Console.WriteLine("初始化freesql专用表成功!");
 
+            sqlClient.CodeFirst.CreateTable(typeof(Table.H_Test50C04));
+            Console.WriteLine("初始化dapper专用表成功!");
+
+
+            MyDBContext efcontext = Demo_Init.GetEFCoreClient();
+            sqlClient.CodeFirst.CreateTable(typeof(Table.H_Test50C05));
+            Console.WriteLine("初始化efcore专用表成功!");
+
 
             Console.WriteLine($"测试场景 Sqlserver  向表中插入{_count}条数据 50列 常规数据插入)");
             Console.WriteLine($"适用于大量数据导入场景");
 
 
+           
 
 
             List<object> lstobj = new List<object>();
             List<Table.H_Test50C02> lstobj2 = new List<Table.H_Test50C02>();
             List<Table.H_Test50C03> lstobj3 = new List<Table.H_Test50C03>();
+            List<Table.H_Test50C04> lstobj4 = new List<Table.H_Test50C04>();
+
+            List<Table.H_Test50C05> lstobj5 = new List<Table.H_Test50C05>();
             Random random = new Random();
 
             //插入的参数值都随机产生 以免数据库执行相同SQL时会有缓存影响测试结果
             for (int i = 0; i < _count; i++)
             {
-                //hisql可以用实体类也可以用匿名类
+                #region hisql可以用实体类也可以用匿名类
                 lstobj.Add(new Table.H_Test50C01 { 
                     Material=(900000+i).ToString(),
                     Batch=(30000000+i).ToString(),
@@ -343,7 +477,9 @@ namespace TestProject
                     TestDec15 = i + random.Next(1, 10000) / 3,
                     Salary = 5000 + (i % 2000) + random.Next(10), Descript = $"hisql初始创建" });
 
-                //sqlsugar用匿句类报错用实体类
+                #endregion
+
+                #region sqlsugar用匿句类报错用实体类
                 lstobj2.Add(new Table.H_Test50C02
                 {
                     Material = (900000 + i).ToString(),
@@ -396,6 +532,9 @@ namespace TestProject
                     Salary = 5000 + (i % 2000) + random.Next(10),
                     Descript = $"sqlsugar初始创建"
                 });
+                #endregion
+
+                #region freesql
                 lstobj3.Add(new Table.H_Test50C03
                 {
                     Material = (900000 + i).ToString(),
@@ -448,12 +587,128 @@ namespace TestProject
                     Salary = 5000 + (i % 2000) + random.Next(10),
                     Descript = $"freesql初始创建"
                 });
+                #endregion
+
+                #region dapper
+                lstobj4.Add(new Table.H_Test50C04
+                {
+                    Material = (900000 + i).ToString(),
+                    Batch = (30000000 + i).ToString(),
+                    TestNum1 = random.Next(10, 100),
+                    TestNum2 = random.Next(10, 100),
+                    TestNum3 = random.Next(10, 100),
+                    TestNum4 = random.Next(10, 100),
+                    TestNum5 = random.Next(10, 100),
+                    TestNum6 = random.Next(10, 100),
+                    TestNum7 = random.Next(10, 100),
+                    TestNum8 = random.Next(10, 100),
+                    TestNum9 = random.Next(10, 100),
+                    TestNum10 = random.Next(10, 100),
+                    TestNum11 = random.Next(10, 100),
+                    TestNum12 = random.Next(10, 100),
+                    TestNum13 = random.Next(10, 100),
+                    TestNum14 = random.Next(10, 100),
+                    TestNum15 = random.Next(10, 100),
+                    TestStr1 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr2 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr3 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr4 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr5 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr6 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr7 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr8 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr9 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr10 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr11 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr12 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr13 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr14 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr15 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestDec1 = i + random.Next(1, 10000) / 3,
+                    TestDec2 = i + random.Next(1, 10000) / 3,
+                    TestDec3 = i + random.Next(1, 10000) / 3,
+                    TestDec4 = i + random.Next(1, 10000) / 3,
+                    TestDec5 = i + random.Next(1, 10000) / 3,
+                    TestDec6 = i + random.Next(1, 10000) / 3,
+                    TestDec7 = i + random.Next(1, 10000) / 3,
+                    TestDec8 = i + random.Next(1, 10000) / 3,
+                    TestDec9 = i + random.Next(1, 10000) / 3,
+                    TestDec10 = i + random.Next(1, 10000) / 3,
+                    TestDec11 = i + random.Next(1, 10000) / 3,
+                    TestDec12 = i + random.Next(1, 10000) / 3,
+                    TestDec13 = i + random.Next(1, 10000) / 3,
+                    TestDec14 = i + random.Next(1, 10000) / 3,
+                    TestDec15 = i + random.Next(1, 10000) / 3,
+                    Salary = 5000 + (i % 2000) + random.Next(10),
+                    Descript = $"dapper初始创建",
+                    CreateTime=DateTime.Now,
+                    ModiTime=DateTime.Now
+                });
+                #endregion
+                #region efcore
+                lstobj5.Add(new Table.H_Test50C05
+                {
+                    Material = (900000 + i).ToString(),
+                    Batch = (30000000 + i).ToString(),
+                    TestNum1 = random.Next(10, 100),
+                    TestNum2 = random.Next(10, 100),
+                    TestNum3 = random.Next(10, 100),
+                    TestNum4 = random.Next(10, 100),
+                    TestNum5 = random.Next(10, 100),
+                    TestNum6 = random.Next(10, 100),
+                    TestNum7 = random.Next(10, 100),
+                    TestNum8 = random.Next(10, 100),
+                    TestNum9 = random.Next(10, 100),
+                    TestNum10 = random.Next(10, 100),
+                    TestNum11 = random.Next(10, 100),
+                    TestNum12 = random.Next(10, 100),
+                    TestNum13 = random.Next(10, 100),
+                    TestNum14 = random.Next(10, 100),
+                    TestNum15 = random.Next(10, 100),
+                    TestStr1 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr2 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr3 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr4 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr5 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr6 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr7 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr8 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr9 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr10 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr11 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr12 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr13 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr14 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr15 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestDec1 = i + random.Next(1, 10000) / 3,
+                    TestDec2 = i + random.Next(1, 10000) / 3,
+                    TestDec3 = i + random.Next(1, 10000) / 3,
+                    TestDec4 = i + random.Next(1, 10000) / 3,
+                    TestDec5 = i + random.Next(1, 10000) / 3,
+                    TestDec6 = i + random.Next(1, 10000) / 3,
+                    TestDec7 = i + random.Next(1, 10000) / 3,
+                    TestDec8 = i + random.Next(1, 10000) / 3,
+                    TestDec9 = i + random.Next(1, 10000) / 3,
+                    TestDec10 = i + random.Next(1, 10000) / 3,
+                    TestDec11 = i + random.Next(1, 10000) / 3,
+                    TestDec12 = i + random.Next(1, 10000) / 3,
+                    TestDec13 = i + random.Next(1, 10000) / 3,
+                    TestDec14 = i + random.Next(1, 10000) / 3,
+                    TestDec15 = i + random.Next(1, 10000) / 3,
+                    Salary = 5000 + (i % 2000) + random.Next(10),
+                    Descript = $"dapper初始创建",
+                    CreateTime = DateTime.Now,
+                    ModiTime = DateTime.Now
+                });
+                #endregion
             }
 
             //删除测试表中的数据
             sqlClient.TrunCate("H_Test50C01").ExecCommand();
             sqlClient.TrunCate("H_Test50C02").ExecCommand();
             sqlClient.TrunCate("H_Test50C03").ExecCommand();
+            sqlClient.TrunCate("H_Test50C04").ExecCommand();
+            sqlClient.TrunCate("H_Test50C05").ExecCommand();
 
             Stopwatch sw = new Stopwatch();
 
@@ -507,6 +762,57 @@ namespace TestProject
             Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
             sw.Reset();
             #endregion
+
+
+
+
+
+            
+
+
+            #region dapper
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------Dapper 测试----------");
+            Console.WriteLine($"Dapper 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var temp4 = dapper.Query<Table.H_Test50C04>("select * from H_Test50C04 where TestNum1<@TestNum1", new { TestNum1 = -1 }).ToList();
+
+            Console.WriteLine($"Dapper  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            sw.Start();
+
+            //dapper.BulkInsert<Table.HTest04>(lstobj4);
+
+
+
+            // 参考dapper 教程https://dapper-tutorial.net/execute 写法
+            dapper.Execute("insert into H_Test50C04(Material,Batch,TestNum1,TestNum2,TestNum3,TestNum4,TestNum5,TestNum6,TestNum7,TestNum8,TestNum9,TestNum10,TestNum11,TestNum12,TestNum13,TestNum14,TestNum15,TestDec1,TestDec2,TestDec3,TestDec4,TestDec5,TestDec6,TestDec7,TestDec8,TestDec9,TestDec10,TestDec11,TestDec12,TestDec13,TestDec14,TestDec15,IsOn,Salary,TestStr1,Descript,TestStr2,TestStr3,TestStr4,TestStr5,TestStr6,TestStr7,TestStr8,TestStr9,TestStr10,TestStr11,TestStr12,TestStr13,TestStr14,TestStr15,CreateTime,CreateName,ModiTime,ModiName)values(@Material,@Batch,@TestNum1,@TestNum2,@TestNum3,@TestNum4,@TestNum5,@TestNum6,@TestNum7,@TestNum8,@TestNum9,@TestNum10,@TestNum11,@TestNum12,@TestNum13,@TestNum14,@TestNum15,@TestDec1,@TestDec2,@TestDec3,@TestDec4,@TestDec5,@TestDec6,@TestDec7,@TestDec8,@TestDec9,@TestDec10,@TestDec11,@TestDec12,@TestDec13,@TestDec14,@TestDec15,@IsOn,@Salary,@TestStr1,@Descript,@TestStr2,@TestStr3,@TestStr4,@TestStr5,@TestStr6,@TestStr7,@TestStr8,@TestStr9,@TestStr10,@TestStr11,@TestStr12,@TestStr13,@TestStr14,@TestStr15,@CreateTime,@CreateName,@ModiTime,@ModiName)", lstobj4);
+            sw.Stop();
+            Console.WriteLine($"Dapper 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            sw.Reset();
+
+            #endregion
+
+            #region efcore
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------efcore 测试----------");
+            Console.WriteLine($"efcore 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var data = efcontext.HTest05.ToList();
+            {
+
+
+                Console.WriteLine($"efcore  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+                sw.Start();
+
+                efcontext.H_Test50C05.AddRange(lstobj5);
+                efcontext.SaveChanges();
+                sw.Stop();
+                Console.WriteLine($"efcore 数据插入{_count}条 耗时{sw.Elapsed}秒");
+                sw.Reset();
+            }
+
+
+            #endregion
+
         }
 
         public static void TestSqlServer50ColBulkCopy(int _count)
@@ -524,7 +830,8 @@ namespace TestProject
             //sqlsugar连接
             SqlSugarClient sugarClient = Demo_Init.GetSugarClient();
 
-
+            //dapper连接
+            IDbConnection dapper = Demo_Init.GetDapperSqlClient();
 
             sqlClient.CodeFirst.CreateTable(typeof(Table.H_Test50C01));
 
@@ -540,6 +847,13 @@ namespace TestProject
             Console.WriteLine("初始化freesql专用表成功!");
 
 
+            sqlClient.CodeFirst.CreateTable(typeof(Table.H_Test50C04));
+            Console.WriteLine("初始化dapper专用表成功!");
+
+            MyDBContext efcontext = Demo_Init.GetEFCoreClient();
+            sqlClient.CodeFirst.CreateTable(typeof(Table.H_Test50C05));
+            Console.WriteLine("初始化efcore专用表成功!");
+
             Console.WriteLine($"测试场景 Sqlserver  向表中插入{_count}条数据 50列 BulkCopy方式插入");
             Console.WriteLine($"适用于大量数据导入场景");
 
@@ -549,12 +863,14 @@ namespace TestProject
             List<Table.H_Test50C01> lstobj = new List<Table.H_Test50C01>();
             List<Table.H_Test50C02> lstobj2 = new List<Table.H_Test50C02>();
             List<Table.H_Test50C03> lstobj3 = new List<Table.H_Test50C03>();
+            List<Table.H_Test50C04> lstobj4 = new List<Table.H_Test50C04>();
+            List<Table.H_Test50C05> lstobj5 = new List<Table.H_Test50C05>();
             Random random = new Random();
 
             //插入的参数值都随机产生 以免数据库执行相同SQL时会有缓存影响测试结果
             for (int i = 0; i < _count; i++)
             {
-                //hisql可以用实体类也可以用匿名类
+                #region hisql可以用实体类也可以用匿名类
                 lstobj.Add(new Table.H_Test50C01
                 {
                     Material = (900000 + i).ToString(),
@@ -608,7 +924,8 @@ namespace TestProject
                     Descript = $"hisql初始创建"
                 });
 
-                //sqlsugar用匿句类报错用实体类
+                #endregion
+                #region sqlsugar用匿句类报错用实体类
                 lstobj2.Add(new Table.H_Test50C02
                 {
                     Material = (900000 + i).ToString(),
@@ -661,6 +978,9 @@ namespace TestProject
                     Salary = 5000 + (i % 2000) + random.Next(10),
                     Descript = $"sqlsugar初始创建"
                 });
+                #endregion
+
+                #region  freesql
                 lstobj3.Add(new Table.H_Test50C03
                 {
                     Material = (900000 + i).ToString(),
@@ -713,29 +1033,130 @@ namespace TestProject
                     Salary = 5000 + (i % 2000) + random.Next(10),
                     Descript = $"freesql初始创建"
                 });
+                #endregion
+
+
+                #region dapper
+                lstobj4.Add(new Table.H_Test50C04
+                {
+                    Material = (900000 + i).ToString(),
+                    Batch = (30000000 + i).ToString(),
+                    TestNum1 = random.Next(10, 100),
+                    TestNum2 = random.Next(10, 100),
+                    TestNum3 = random.Next(10, 100),
+                    TestNum4 = random.Next(10, 100),
+                    TestNum5 = random.Next(10, 100),
+                    TestNum6 = random.Next(10, 100),
+                    TestNum7 = random.Next(10, 100),
+                    TestNum8 = random.Next(10, 100),
+                    TestNum9 = random.Next(10, 100),
+                    TestNum10 = random.Next(10, 100),
+                    TestNum11 = random.Next(10, 100),
+                    TestNum12 = random.Next(10, 100),
+                    TestNum13 = random.Next(10, 100),
+                    TestNum14 = random.Next(10, 100),
+                    TestNum15 = random.Next(10, 100),
+                    TestStr1 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr2 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr3 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr4 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr5 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr6 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr7 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr8 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr9 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr10 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr11 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr12 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr13 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr14 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr15 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestDec1 = i + random.Next(1, 10000) / 3,
+                    TestDec2 = i + random.Next(1, 10000) / 3,
+                    TestDec3 = i + random.Next(1, 10000) / 3,
+                    TestDec4 = i + random.Next(1, 10000) / 3,
+                    TestDec5 = i + random.Next(1, 10000) / 3,
+                    TestDec6 = i + random.Next(1, 10000) / 3,
+                    TestDec7 = i + random.Next(1, 10000) / 3,
+                    TestDec8 = i + random.Next(1, 10000) / 3,
+                    TestDec9 = i + random.Next(1, 10000) / 3,
+                    TestDec10 = i + random.Next(1, 10000) / 3,
+                    TestDec11 = i + random.Next(1, 10000) / 3,
+                    TestDec12 = i + random.Next(1, 10000) / 3,
+                    TestDec13 = i + random.Next(1, 10000) / 3,
+                    TestDec14 = i + random.Next(1, 10000) / 3,
+                    TestDec15 = i + random.Next(1, 10000) / 3,
+                    Salary = 5000 + (i % 2000) + random.Next(10),
+                    Descript = $"dapper初始创建",
+                    CreateTime = DateTime.Now,
+                    ModiTime = DateTime.Now
+                });
+                #endregion
+                #region efcore
+                lstobj5.Add(new Table.H_Test50C05
+                {
+                    Material = (900000 + i).ToString(),
+                    Batch = (30000000 + i).ToString(),
+                    TestNum1 = random.Next(10, 100),
+                    TestNum2 = random.Next(10, 100),
+                    TestNum3 = random.Next(10, 100),
+                    TestNum4 = random.Next(10, 100),
+                    TestNum5 = random.Next(10, 100),
+                    TestNum6 = random.Next(10, 100),
+                    TestNum7 = random.Next(10, 100),
+                    TestNum8 = random.Next(10, 100),
+                    TestNum9 = random.Next(10, 100),
+                    TestNum10 = random.Next(10, 100),
+                    TestNum11 = random.Next(10, 100),
+                    TestNum12 = random.Next(10, 100),
+                    TestNum13 = random.Next(10, 100),
+                    TestNum14 = random.Next(10, 100),
+                    TestNum15 = random.Next(10, 100),
+                    TestStr1 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr2 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr3 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr4 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr5 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr6 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr7 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr8 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr9 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr10 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr11 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr12 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr13 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr14 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestStr15 = $"dapper{random.Next(1, 100).ToString()}",
+                    TestDec1 = i + random.Next(1, 10000) / 3,
+                    TestDec2 = i + random.Next(1, 10000) / 3,
+                    TestDec3 = i + random.Next(1, 10000) / 3,
+                    TestDec4 = i + random.Next(1, 10000) / 3,
+                    TestDec5 = i + random.Next(1, 10000) / 3,
+                    TestDec6 = i + random.Next(1, 10000) / 3,
+                    TestDec7 = i + random.Next(1, 10000) / 3,
+                    TestDec8 = i + random.Next(1, 10000) / 3,
+                    TestDec9 = i + random.Next(1, 10000) / 3,
+                    TestDec10 = i + random.Next(1, 10000) / 3,
+                    TestDec11 = i + random.Next(1, 10000) / 3,
+                    TestDec12 = i + random.Next(1, 10000) / 3,
+                    TestDec13 = i + random.Next(1, 10000) / 3,
+                    TestDec14 = i + random.Next(1, 10000) / 3,
+                    TestDec15 = i + random.Next(1, 10000) / 3,
+                    Salary = 5000 + (i % 2000) + random.Next(10),
+                    Descript = $"dapper初始创建",
+                    CreateTime = DateTime.Now,
+                    ModiTime = DateTime.Now
+                });
+                #endregion
             }
 
             //删除测试表中的数据
             sqlClient.TrunCate("H_Test50C01").ExecCommand();
             sqlClient.TrunCate("H_Test50C02").ExecCommand();
             sqlClient.TrunCate("H_Test50C03").ExecCommand();
-
+            sqlClient.TrunCate("H_Test50C04").ExecCommand();
+            sqlClient.TrunCate("H_Test50C05").ExecCommand();
             Stopwatch sw = new Stopwatch();
-
-            #region sqlsugar
-            sw.Reset();
-            Console.WriteLine("------------------------------");
-            Console.WriteLine("----------SqlSugar 测试----------");
-            Console.WriteLine($"SqlSugar 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
-            var temp2 = sugarClient.Queryable<Table.H_Test50C02>("H_Test50C02").Where(w => w.TestDec1 < 1).ToList();
-            Console.WriteLine($"sqlsugar  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
-            sw.Start();
-            //sugarClient.Insertable(lstobj2).AS("HTest02").ExecuteCommand();
-            sugarClient.Fastest<Table.H_Test50C02>().BulkCopy(lstobj2);
-            sw.Stop();
-            Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
-            sw.Reset();
-            #endregion
 
             #region freesql
             sw.Reset();
@@ -753,6 +1174,7 @@ namespace TestProject
             #endregion
 
 
+           
             #region hisql
             sw.Reset();
             Console.WriteLine("------------------------------");
@@ -770,11 +1192,67 @@ namespace TestProject
             #endregion
 
 
+            #region sqlsugar
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------SqlSugar 测试----------");
+            Console.WriteLine($"SqlSugar 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var temp2 = sugarClient.Queryable<Table.H_Test50C02>("H_Test50C02").Where(w => w.TestDec1 < 1).ToList();
+            Console.WriteLine($"sqlsugar  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            sw.Start();
+            //sugarClient.Insertable(lstobj2).AS("HTest02").ExecuteCommand();
+            sugarClient.Fastest<Table.H_Test50C02>().BulkCopy(lstobj2);
+            sw.Stop();
+            Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            sw.Reset();
+            #endregion
 
 
+            #region dapper
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------Dapper 测试----------");
+            Console.WriteLine($"Dapper 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var temp4 = dapper.Query<Table.H_Test50C04>("select * from H_Test50C04 where TestNum1<@TestNum1", new { TestNum1 = -1 }).ToList();
+
+            Console.WriteLine($"Dapper  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            sw.Start();
 
 
-            
+            //https://dapper-tutorial.net/online-examples 根据 这里的例子实现
+
+            dapper.BulkInsert<Table.H_Test50C04>(lstobj4);
+
+
+            sw.Stop();
+            Console.WriteLine($"Dapper 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            sw.Reset();
+
+            #endregion
+
+            #region efcore
+            //sw.Reset();
+            //Console.WriteLine("------------------------------");
+            //Console.WriteLine("----------efcore 测试----------");
+            //Console.WriteLine($"efcore 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            //var data = efcontext.HTest05.ToList();
+            //{
+
+
+            //    Console.WriteLine($"efcore  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            //    sw.Start();
+
+            //    efcontext.BulkInsert(lstobj5);
+
+            //    efcontext.SaveChanges();
+            //    sw.Stop();
+            //    Console.WriteLine($"efcore 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            //    sw.Reset();
+            //}
+
+
+            #endregion
+
         }
 
         #endregion
@@ -1114,17 +1592,17 @@ namespace TestProject
 
             //sqlsugar 在postgresql下报错
             #region sqlsugar
-            //sw.Reset();
-            //Console.WriteLine("------------------------------");
-            //Console.WriteLine("----------SqlSugar 测试----------");
-            //Console.WriteLine($"SqlSugar 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
-            //var temp2 = sugarClient.Queryable<Table.HTest02>("HTest02").Where(w => w.Age < 1).ToList();
-            //Console.WriteLine($"sqlsugar  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
-            //sw.Start();
-            //sugarClient.Insertable(lstobj2).AS("HTest02").ExecuteCommand();
-            //sw.Stop();
-            //Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
-            //sw.Reset();
+            sw.Reset();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("----------SqlSugar 测试----------");
+            Console.WriteLine($"SqlSugar 预热...{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            var temp2 = sugarClient.Queryable<Table.HTest02>("HTest02").Where(w => w.Age < 1).ToList();
+            Console.WriteLine($"sqlsugar  正在插入数据\t{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff")}");
+            sw.Start();
+            sugarClient.Insertable(lstobj2).AS("HTest02").ExecuteCommand();
+            sw.Stop();
+            Console.WriteLine($"sqlsugar 数据插入{_count}条 耗时{sw.Elapsed}秒");
+            sw.Reset();
             #endregion
         }
 
@@ -1244,6 +1722,7 @@ namespace TestProject
         }
 
         #endregion
+
 
 
 
@@ -1477,5 +1956,46 @@ namespace TestProject
             #endregion
         }
         #endregion
+
+
+
+
+        #region dapper 测试
+
+        //public static void InsertBatchTest<T>(IDbConnection conn, IEnumerable<T> entityList, IDbTransaction transaction = null) where T : class
+        //{
+        //    var tbName = string.Format("dbo.{0}", typeof(T).Name);
+        //    var trans = (SqlTransaction)transaction;
+        //    using (var bulkCopy = new SqlBulkCopy(conn as SqlConnection, SqlBulkCopyOptions.TableLock, trans))
+        //    {
+        //        bulkCopy.BatchSize = 10000;
+        //        bulkCopy.BulkCopyTimeout = 60;
+        //        bulkCopy.DestinationTableName = tbName;
+        //        var table = new DataTable();
+        //        DapperExtensions.Sql.ISqlGenerator sqlGenerator = new SqlGeneratorImpl(new DapperExtensionsConfiguration());
+        //        var classMap = sqlGenerator.Configuration.GetMap<T>();
+        //        var props = classMap.Properties.Where(x => x.Ignored == false).ToArray();
+        //        foreach (var propertyInfo in props)
+        //        {
+                   
+        //            bulkCopy.ColumnMappings.Add(propertyInfo.Name, propertyInfo.Name);
+        //            table.Columns.Add(propertyInfo.Name, Nullable.GetUnderlyingType(propertyInfo.PropertyInfo.PropertyType) ?? propertyInfo.PropertyInfo.PropertyType);
+        //        }
+        //        var values = new object[props.Count()];
+        //        foreach (var itemm in entityList)
+        //        {
+        //            for (var i = 0; i < values.Length; i++)
+        //            {
+        //                values[i] = props[i].PropertyInfo.GetValue(itemm, null);
+        //            }
+        //            table.Rows.Add(values);
+        //        }
+
+        //        bulkCopy.WriteToServer(table);
+        //    }
+        //}
+
+        #endregion
+
     }
 }

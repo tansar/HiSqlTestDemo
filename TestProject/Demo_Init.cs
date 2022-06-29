@@ -5,6 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SqlSugar;
+using Dapper;
+using System.Data;
+using System.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using TestProject.Table;
+
 namespace TestProject
 {
     public class Demo_Init
@@ -333,5 +339,48 @@ namespace TestProject
         #endregion
 
 
+
+        #region dapper 连接
+
+        public static IDbConnection GetDapperSqlClient()
+        {
+            return new SqlConnection("server=(local);uid=sa;pwd=Hone@123;database=HiSql;Encrypt=True; TrustServerCertificate=True;");
+        }
+
+        #endregion
+
+        public static MyDBContext GetEFCoreClient()
+        {
+            var context = new MyDBContext();
+            return context;
+        }
+    }
+
+
+
+    public class MyDBContext : DbContext
+    {
+        public DbSet<Table.H_Test50C05> H_Test50C05 { get; set; }
+        public DbSet<Table.HTest05> HTest05 { get; set; }
+
+        //这里是配置
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //DbContextOptionsBuilder注入
+            base.OnConfiguring(optionsBuilder);
+            //设置连接字符串
+            optionsBuilder.UseSqlServer("server=(local);uid=sa;pwd=Hone@123;database=HiSql;Encrypt=True; TrustServerCertificate=True;");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HTest05>().HasKey("SID");
+            modelBuilder.Entity<H_Test50C05>().HasKey("Material", "Batch");
+
+            base.OnModelCreating(modelBuilder);
+            //获取当前程序集默认的是查找所有继承了IEntityTypeConfiguration的类
+            modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
+
+
+        }
     }
 }
